@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 import sqlite3
 import time
-import re
+
 from sqlite3 import Error
 
 def create_connection(db_file):
@@ -16,7 +16,6 @@ def sendToDB(data):
 	db = "/home/userdb/Poseidon/Poseidon.db"
 	conn = create_connection(db)
 	c = conn.cursor()
-	#query_db("INSERT INTO data_poseidon(Pression) VALUES (0)")
 	c.execute("INSERT INTO data_poseidon(Pression, Humidity, Temperature) VALUES (" + data[0] + ", " + data[1] + ", " + data[2] +")")
 	print("request done")
 	conn.commit()
